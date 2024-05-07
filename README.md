@@ -18,4 +18,4 @@ Design a database schema for a hierarchical grouping of IoT devices.
 2. Create a web application that can manage Groups and Firmware for devices.
 
 ## Tech Stack:
-• We prefer `MSSQL` and `.NET` (`C#`, `HTML`, `JS`, `CSS`) however we will accept it in another stack provided the solution is well documented.
+* We prefer `MSSQL` and `.NET` (`C#`, `HTML`, `JS`, `CSS`) however we will accept it in another stack provided the solution is well documented.

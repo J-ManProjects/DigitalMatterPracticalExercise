@@ -1,0 +1,8 @@
+# Ignore all IDE configurations.
+.spyproject
+.vscode
+.vs
+
+# Ignoring the compilation folders.
+bin
+obj
