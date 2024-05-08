@@ -19,3 +19,12 @@ Design a database schema for a hierarchical grouping of IoT devices.
 
 ## Tech Stack:
 * We prefer `MSSQL` and `.NET` (`C#`, `HTML`, `JS`, `CSS`) however we will accept it in another stack provided the solution is well documented.
+
+
+## Design:
+The designed database schema is illustrated below:
+![database schema](Images/database_schema.png)
+The reasoning is as follows:
+* Firmware is written for a specific device, leading to a many-to-one relationship between firmware and devices.
+* As groups can be a part of another group, each group can (optionally) be linked to a parent group.
+* Since multiple devices can be part of a single group, and multiple groups can contain the same device, the relationship between devices and groups are many-to-many. The solution is the Connections join table that directly links groups and devices via their respective IDs.
