@@ -7,4 +7,7 @@ public class Connection
     public int GroupId { get; set; }
 
     public int DeviceId { get; set; }
+
+    public Group Group { get; set; }
+    public Device Device { get; set; }
 }

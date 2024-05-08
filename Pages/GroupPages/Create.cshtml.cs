@@ -35,7 +35,7 @@ namespace DigitalMatterPracticalExercise.Pages.GroupPages
                 return Page();
             }
 
-            _context.Group.Add(Group);
+            _context.Groups.Add(Group);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

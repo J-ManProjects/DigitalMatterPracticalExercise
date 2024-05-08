@@ -9,4 +9,8 @@ public class Group
     public string? Description { get; set; }
 
     public int? ParentGroupId { get; set; }
+
+    public ICollection<Connection> Connections { get; set; }
+
+    public Group ParentGroup { get; set; }
 }

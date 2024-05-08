@@ -30,7 +30,7 @@ namespace DigitalMatterPracticalExercise.Pages.GroupPages
                 return NotFound();
             }
 
-            var group =  await _context.Group.FirstOrDefaultAsync(m => m.Id == id);
+            var group =  await _context.Groups.FirstOrDefaultAsync(m => m.Id == id);
             if (group == null)
             {
                 return NotFound();
@@ -71,7 +71,7 @@ namespace DigitalMatterPracticalExercise.Pages.GroupPages
 
         private bool GroupExists(int id)
         {
-            return _context.Group.Any(e => e.Id == id);
+            return _context.Groups.Any(e => e.Id == id);
         }
     }
 }

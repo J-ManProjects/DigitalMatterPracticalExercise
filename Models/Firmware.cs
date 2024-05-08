@@ -9,9 +9,11 @@ public class Firmware
     public string Version { get; set; } = string.Empty;
 
     [DataType(DataType.Date)]
-    public DateOnly ReleaseDate { get; set; }
+    public DateTime ReleaseDate { get; set; }
 
     public string? Description { get; set; }
 
     public int? DeviceId { get; set; }
+
+    public Device Device { get; set; }
 }

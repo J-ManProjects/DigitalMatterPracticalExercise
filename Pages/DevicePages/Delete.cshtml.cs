@@ -29,7 +29,7 @@ namespace DigitalMatterPracticalExercise.Pages.DevicePages
                 return NotFound();
             }
 
-            var device = await _context.Device.FirstOrDefaultAsync(m => m.Id == id);
+            var device = await _context.Devices.FirstOrDefaultAsync(m => m.Id == id);
 
             if (device == null)
             {
@@ -49,11 +49,11 @@ namespace DigitalMatterPracticalExercise.Pages.DevicePages
                 return NotFound();
             }
 
-            var device = await _context.Device.FindAsync(id);
+            var device = await _context.Devices.FindAsync(id);
             if (device != null)
             {
                 Device = device;
-                _context.Device.Remove(Device);
+                _context.Devices.Remove(Device);
                 await _context.SaveChangesAsync();
             }
 

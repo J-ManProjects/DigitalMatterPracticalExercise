@@ -28,7 +28,7 @@ namespace DigitalMatterPracticalExercise.Pages.GroupPages
                 return NotFound();
             }
 
-            var group = await _context.Group.FirstOrDefaultAsync(m => m.Id == id);
+            var group = await _context.Groups.FirstOrDefaultAsync(m => m.Id == id);
             if (group == null)
             {
                 return NotFound();

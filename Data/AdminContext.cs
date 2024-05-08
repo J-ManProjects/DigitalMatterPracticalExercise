@@ -14,8 +14,17 @@ namespace DigitalMatterPracticalExercise.Data
         {
         }
 
-        public DbSet<DigitalMatterPracticalExercise.Models.Device> Device { get; set; } = default!;
+        public DbSet<DigitalMatterPracticalExercise.Models.Device> Devices { get; set; } = default!;
         public DbSet<DigitalMatterPracticalExercise.Models.Firmware> Firmware { get; set; } = default!;
-        public DbSet<DigitalMatterPracticalExercise.Models.Group> Group { get; set; } = default!;
+        public DbSet<DigitalMatterPracticalExercise.Models.Group> Groups { get; set; } = default!;
+        public DbSet<DigitalMatterPracticalExercise.Models.Connection> Connections { get; set; } = default!;
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Device>().ToTable(nameof(Device));
+            modelBuilder.Entity<Firmware>().ToTable(nameof(Firmware));
+            modelBuilder.Entity<Group>().ToTable(nameof(Group));
+            modelBuilder.Entity<Connection>().ToTable(nameof(Connection));
+        }
     }
 }

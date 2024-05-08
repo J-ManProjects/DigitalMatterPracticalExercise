@@ -29,7 +29,7 @@ namespace DigitalMatterPracticalExercise.Pages.GroupPages
                 return NotFound();
             }
 
-            var group = await _context.Group.FirstOrDefaultAsync(m => m.Id == id);
+            var group = await _context.Groups.FirstOrDefaultAsync(m => m.Id == id);
 
             if (group == null)
             {
@@ -49,11 +49,11 @@ namespace DigitalMatterPracticalExercise.Pages.GroupPages
                 return NotFound();
             }
 
-            var group = await _context.Group.FindAsync(id);
+            var group = await _context.Groups.FindAsync(id);
             if (group != null)
             {
                 Group = group;
-                _context.Group.Remove(Group);
+                _context.Groups.Remove(Group);
                 await _context.SaveChangesAsync();
             }
 

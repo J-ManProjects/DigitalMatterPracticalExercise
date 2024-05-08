@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DigitalMatterPracticalExercise.Migrations
 {
     [DbContext(typeof(AdminContext))]
-    [Migration("20240508204233_InitialCreate")]
+    [Migration("20240508234748_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -24,6 +24,29 @@ namespace DigitalMatterPracticalExercise.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("DigitalMatterPracticalExercise.Models.Connection", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("DeviceId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("GroupId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DeviceId");
+
+                    b.HasIndex("GroupId");
+
+                    b.ToTable("Connection", (string)null);
+                });
 
             modelBuilder.Entity("DigitalMatterPracticalExercise.Models.Device", b =>
                 {
@@ -42,7 +65,7 @@ namespace DigitalMatterPracticalExercise.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Device");
+                    b.ToTable("Device", (string)null);
                 });
 
             modelBuilder.Entity("DigitalMatterPracticalExercise.Models.Firmware", b =>
@@ -59,8 +82,8 @@ namespace DigitalMatterPracticalExercise.Migrations
                     b.Property<int?>("DeviceId")
                         .HasColumnType("int");
 
-                    b.Property<DateOnly>("ReleaseDate")
-                        .HasColumnType("date");
+                    b.Property<DateTime>("ReleaseDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Version")
                         .IsRequired()
@@ -68,7 +91,9 @@ namespace DigitalMatterPracticalExercise.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Firmware");
+                    b.HasIndex("DeviceId");
+
+                    b.ToTable("Firmware", (string)null);
                 });
 
             modelBuilder.Entity("DigitalMatterPracticalExercise.Models.Group", b =>
@@ -91,7 +116,58 @@ namespace DigitalMatterPracticalExercise.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Group");
+                    b.HasIndex("ParentGroupId");
+
+                    b.ToTable("Group", (string)null);
+                });
+
+            modelBuilder.Entity("DigitalMatterPracticalExercise.Models.Connection", b =>
+                {
+                    b.HasOne("DigitalMatterPracticalExercise.Models.Device", "Device")
+                        .WithMany("Connections")
+                        .HasForeignKey("DeviceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DigitalMatterPracticalExercise.Models.Group", "Group")
+                        .WithMany("Connections")
+                        .HasForeignKey("GroupId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Device");
+
+                    b.Navigation("Group");
+                });
+
+            modelBuilder.Entity("DigitalMatterPracticalExercise.Models.Firmware", b =>
+                {
+                    b.HasOne("DigitalMatterPracticalExercise.Models.Device", "Device")
+                        .WithMany("Firmware")
+                        .HasForeignKey("DeviceId");
+
+                    b.Navigation("Device");
+                });
+
+            modelBuilder.Entity("DigitalMatterPracticalExercise.Models.Group", b =>
+                {
+                    b.HasOne("DigitalMatterPracticalExercise.Models.Group", "ParentGroup")
+                        .WithMany()
+                        .HasForeignKey("ParentGroupId");
+
+                    b.Navigation("ParentGroup");
+                });
+
+            modelBuilder.Entity("DigitalMatterPracticalExercise.Models.Device", b =>
+                {
+                    b.Navigation("Connections");
+
+                    b.Navigation("Firmware");
+                });
+
+            modelBuilder.Entity("DigitalMatterPracticalExercise.Models.Group", b =>
+                {
+                    b.Navigation("Connections");
                 });
 #pragma warning restore 612, 618
         }

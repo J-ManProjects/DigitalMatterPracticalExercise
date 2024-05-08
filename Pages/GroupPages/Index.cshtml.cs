@@ -23,7 +23,7 @@ namespace DigitalMatterPracticalExercise.Pages.GroupPages
 
         public async Task OnGetAsync()
         {
-            Group = await _context.Group.ToListAsync();
+            Group = await _context.Groups.ToListAsync();
         }
     }
 }

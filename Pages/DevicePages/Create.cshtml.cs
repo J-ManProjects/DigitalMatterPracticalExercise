@@ -35,7 +35,7 @@ namespace DigitalMatterPracticalExercise.Pages.DevicePages
                 return Page();
             }
 
-            _context.Device.Add(Device);
+            _context.Devices.Add(Device);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

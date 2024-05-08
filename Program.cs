@@ -18,6 +18,14 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+
+    var context = services.GetRequiredService<AdminContext>();
+    DataSeed.PopulateDatabase(context);
+}
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 

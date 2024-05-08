@@ -23,7 +23,7 @@ namespace DigitalMatterPracticalExercise.Pages.DevicePages
 
         public async Task OnGetAsync()
         {
-            Device = await _context.Device.ToListAsync();
+            Device = await _context.Devices.ToListAsync();
         }
     }
 }
